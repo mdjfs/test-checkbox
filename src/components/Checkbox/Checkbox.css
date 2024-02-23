@@ -1,0 +1,14 @@
+.checkbox-item {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    font-size: 22px;
+    justify-content: start;
+    gap: 5px;
+    width: 100%;
+    accent-color: grey;
+    cursor: pointer;
+}
+
+.checkbox-item.checked {
+    background-color: #f5f5f5;
+}

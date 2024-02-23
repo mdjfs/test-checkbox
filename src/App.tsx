@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import { COUNTRIES, SELECT_ALL } from './utils/constants';
+
 import './App.css';
+import Checkbox from './components/Checkbox/Checkbox';
+import { useMemo, useState } from 'react';
+import { Item } from './types';
 
 function App() {
+  const [items, setItems] = useState<Item[]>(COUNTRIES.map(country => ({ value: country })))
+
+  const setByValue = (value: string, checked: boolean) => {
+    setItems(items.map(item => item.value === value ? ({ ...item, checked }) : item))
+  }
+
+  const setAll = (checked: boolean) => {
+    setItems(items.map(item => ({ ...item, checked })))
+  }
+
+  const allChecked = useMemo(() => !items.find(item => !item.checked), [items])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="checkbox-container">
+      <Checkbox value={SELECT_ALL} checked={allChecked} onClick={() => setAll(!allChecked)} />
+      {items.map(item => <Checkbox key={item.value} value={item.value} checked={item.checked} onClick={() => setByValue(item.value, !item.checked)} /> )}
     </div>
   );
 }

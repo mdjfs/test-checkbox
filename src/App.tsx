@@ -1,9 +1,10 @@
+import { useMemo, useState } from 'react';
 import { COUNTRIES, SELECT_ALL } from './utils/constants';
+import Checkbox from './components/Checkbox/Checkbox';
+import { Item } from './types';
 
 import './App.css';
-import Checkbox from './components/Checkbox/Checkbox';
-import { useMemo, useState } from 'react';
-import { Item } from './types';
+
 
 function App() {
   const [items, setItems] = useState<Item[]>(COUNTRIES.map(country => ({ value: country })))

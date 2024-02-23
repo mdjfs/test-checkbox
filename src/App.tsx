@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { COUNTRIES, SELECT_ALL } from './utils/constants';
-import Checkbox from './components/Checkbox/Checkbox';
+import { Checkbox } from './components';
 import { Item } from './types';
 
 import './App.css';
